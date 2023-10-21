@@ -67,7 +67,7 @@ def student_registration():
         if existing_student:
             return jsonify({'success': False, 'message': 'Email already registered'}), 400
         else:
-            cursor.execute("INSERT INTO Student (email, name, password, admin) VALUES (%s, %s, %s, %s)",
+            cursor.execute("INSERT INTO Student (email, username, fname, lname, password) VALUES (%s, %s, %s, %s, %s)",
                            (email, username, fname, lname, password))
             connection.commit()
 
