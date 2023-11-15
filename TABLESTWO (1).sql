@@ -23,14 +23,15 @@ CREATE TABLE Feedback (
 
 
 -- Table: Student
-CREATE TABLE Student  (
-    username char(50) NOT NULL,
-  	fName char(50) NOT NULL,
-  	lName char(50) NOT NULL,
-  	studentEmail varchar(100) NOT NULL,
-    password varchar(100) NOT NULL,
-	CONSTRAINT studentEmail_pk  PRIMARY KEY (studentEmail)	
+CREATE TABLE Student (
+    username CHAR(50) NOT NULL,
+    fName CHAR(50) NOT NULL,
+    lName CHAR(50) NOT NULL,
+    studentEmail VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    CONSTRAINT studentEmail_pk PRIMARY KEY (studentEmail)
 );
+
 -- Table: Professor 
 CREATE TABLE Professor (
 	fName char NOT NULL,

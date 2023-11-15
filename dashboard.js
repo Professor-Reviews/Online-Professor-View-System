@@ -119,6 +119,8 @@ document.getElementById("search-button").addEventListener("click", async () => {
 
 
 // Function to update the UI based on login status
+// Function to update the UI based on login status
+// Function to update the UI based on login status
 async function updateUI() {
     const isLoggedIn = await checkLoginStatus();
     const createReviewButton = document.getElementById("create-review-button");
@@ -127,22 +129,28 @@ async function updateUI() {
     const userStatus = document.getElementById("user-status");
     const loginButton = document.getElementById("login-button");
 
-    // Check if the user is not logged in and it's the initial state
-    if (!isLoggedIn && localStorage.getItem('authToken')) {
-        console.log('Clearing invalid authToken...');
-        localStorage.removeItem('authToken');
-    }
+    // Check if the authentication token is null
+    const authToken = localStorage.getItem('authToken');
+    const isTokenNull = authToken === null;
 
-    // Show/hide elements based on login status
-    userStatus.style.display = isLoggedIn ? 'block' : 'none';
-    loginButton.style.display = isLoggedIn ? 'none' : 'block';
+    // Show/hide elements based on login status and token value
+    userStatus.style.display = isLoggedIn && !isTokenNull ? 'block' : 'none';
+    loginButton.style.display = isTokenNull ? 'block' : 'none';
     createReviewButton.style.display = isLoggedIn ? 'block' : 'none';
     profileButton.style.display = isLoggedIn ? 'block' : 'none';
     logoutButton.style.display = isLoggedIn ? 'block' : 'none';
+
+    // Hide the "Create a Review" button if the user is not logged in
+    if (!isLoggedIn) {
+        createReviewButton.style.display = 'none';
+    }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     fetchReviews();
+    updateUI();
     document.getElementById("post-review-button").addEventListener("click", handlePostReviewButtonClick);
     const loginButton = document.getElementById("login-button");
     const logoutButton = document.getElementById("logout-button");
@@ -203,13 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add event listener for "Post Your Review" button
     document.getElementById("post-review-button").addEventListener("click", handlePostReviewButtonClick);
 });
-document.addEventListener('DOMContentLoaded', async () => {
-    const isLoggedIn = await checkLoginStatus();
-    if (isLoggedIn) {
-        // Update UI for logged-in user
-        updateUI();
-    }
-});
+
 
 async function handlePostReviewButtonClick() {
     const professorName = document.getElementById("professor-name").value;

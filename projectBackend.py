@@ -4,6 +4,7 @@ import mysql.connector
 from flask import session
 from flask import Flask, render_template, session
 
+
 app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})
@@ -11,7 +12,9 @@ CORS(app, resources={r"/addReview": {"origins": "http://localhost:5000"}})
 CORS(app, resources={r"/authenticate": {"origins": "http://localhost:5000"},
                     r"/registerStudent": {"origins": "http://localhost:5000"}})
 CORS(app, resources={r"/api/check-login-status": {"origins": "http://localhost:5000"}})
-
+CORS(app, resources={r"/api/getUserProfile": {"origins": "http://localhost:5000"}})
+import logging
+app.logger.setLevel(logging.INFO) 
 
 # Replace 'your_username', 'your_password', 'your_host', 'your_database' with your actual database connection details
 db_config = {
@@ -25,12 +28,91 @@ db_config = {
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
+
+
+from flask import request
+
+
+
+
+from flask import request
+
 # ...
 @app.route('/homepage')
 def homepage():
     username = session.get('username')  # Assuming you store the username in the session
     return render_template('homepage.html', username=username)
 
+# Add this route to fetch user profile data
+@app.route('/api/getUserProfile', methods=['GET'])
+def get_user_profile():
+    try:
+        # Get the username of the logged-in user, replace this with your actual method
+        logged_in_user = 'coleattick1@gmail.com'
+
+        # Establish a database connection
+        connection = get_db_connection()
+
+        # Create a cursor to execute SQL queries
+        cursor = connection.cursor(dictionary=True)
+
+        # Execute a query to retrieve user data based on the username
+        cursor.execute("SELECT username, studentEmail, fName, lName FROM Student WHERE studentEmail = %s", (logged_in_user,))
+
+
+        user_data = cursor.fetchone()
+
+        return jsonify(user_data)
+
+    except Exception as e:
+        return jsonify({'error': f'Error getting user profile: {str(e)}'}), 500
+
+    finally:
+        # Close the cursor and connection
+        if 'cursor' in locals() and cursor is not None:
+            cursor.close()
+        if 'connection' in locals() and connection.is_connected():
+            connection.close()
+
+# The route to update user profile data
+# Flask route to get user profile
+@app.route('/api/get-profile', methods=['GET'])
+def get_profile():
+    return get_user_profile()
+
+# Flask route to update user profile
+@app.route('/api/update-profile', methods=['POST'])
+def update_profile():
+    try:
+        # Get the username of the logged-in user, replace this with your actual method
+        logged_in_user = 'ColeAttick'
+
+        # Extract updated profile data from the request
+        updated_profile_data = request.json
+
+        # Establish a database connection
+        connection = get_db_connection()
+
+        # Create a cursor to execute SQL queries
+        cursor = connection.cursor()
+
+        # Execute a query to update user data based on the username
+        cursor.execute("UPDATE Student SET studentEmail = %s, fName = %s, lName = %s, username = %s WHERE username = %s",
+                       (updated_profile_data['username'],updated_profile_data['studentEmail'], updated_profile_data['fName'],
+                        updated_profile_data['lName'], logged_in_user))
+        connection.commit()
+
+        return jsonify({'message': 'Profile updated successfully'}), 200
+
+    except Exception as e:
+        return jsonify({'error': f'Error updating profile: {str(e)}'}), 500
+
+    finally:
+        # Close the cursor and connection
+        if 'cursor' in locals() and cursor is not None:
+            cursor.close()
+        if 'connection' in locals() and connection.is_connected():
+            connection.close()
 
 @app.route('/api/searchReviews')
 def search_reviews():
@@ -126,6 +208,7 @@ def add_student():
     lName = data.get('lName')
     studentEmail = data.get('studentEmail')
     password = data.get('password')
+    username= data.get('username')
     #print(fName + lName + studentEmail + password)
     try:
         connection = get_db_connection()
@@ -139,8 +222,8 @@ def add_student():
             return jsonify({'message': 'User with the email already exists'}), 409  # 409 Conflict status code
 
         # Insert a new row if the email doesn't exist
-        cursor.execute("INSERT INTO Student (fName, lName, studentEmail, password) VALUES (%s, %s, %s, %s)",
-                       (fName, lName, studentEmail, password))
+        cursor.execute("INSERT INTO Student (fName, lName, studentEmail, password, username) VALUES (%s, %s, %s, %s, %s)",
+                       (fName, lName, studentEmail, password, username))
         connection.commit()
 
         return jsonify({'message': 'User added successfully'}), 201  # 201 Created status code

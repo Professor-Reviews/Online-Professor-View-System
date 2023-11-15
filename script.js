@@ -41,6 +41,7 @@ loginButton.addEventListener("click", async () => {
 
         if (response.ok) {
             // Login successful, you can redirect to the homepage or perform other actions
+            localStorage.setItem('authToken', data.token);
             window.location.href = "homepage.html";
         } else {
             // Handle login failure, display an error message, etc.
@@ -86,6 +87,7 @@ registerButton.addEventListener("click", async () => {
 
         if (response.ok) {
             // Registration successful, you can redirect to the homepage or perform other actions
+            localStorage.setItem('authToken', data.token);
             window.location.href = "homepage.html";
         } else {
             // Handle registration failure, display an error message, etc.
