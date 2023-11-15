@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Panther Reviews</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>Panther Reviews</h1>
+            <div id="user-status" style="display: none;">
+                <div id="welcome-message" style="color: white;">
+                    Welcome, <span id="username-placeholder">ColeAttick</span>
+                </div>
+                <div id="user-options">
+                    <button id="profile-button" onclick="redirectToProfile()">Profile</button>
+                    <button id="logout-button">Logout</button>
+                </div>
+            </div>
+            <button id="create-review-button">Create a Review</button>
+            <button id="login-button" style="display: none;">Login</button> <!-- Add this line -->
+        </div>
+    </div>
+
+
+    <div class="create-review-section">
+        <div id="create-review-options">
+            <input type="text" id="professor-name" placeholder="Professor's Name">
+            <input type="text" id="class-Name" placeholder="Class Name">
+            <textarea id="review-description" placeholder="Review Description"></textarea>
+            <input type="number" id="rating" placeholder="Rating" min="1" max="5" step="0.1">
+            <button id="post-review-button">Post Your Review</button>
+        </div>
+
+
+        <div class="featured-professors">
+            <h2>Featured Professors</h2>
+            <div class="featured-container">
+                <div class="review">
+                    <div class="review-header">
+                        <img src="jane.jpg" alt="Professor's Image" class="professor-image">
+                        <div class="professor-info">
+                            <p>Professor Jane Smith</p>
+                            <p>Course: Introduction to Physics</p>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p>
+                            Professor Jane Smith is an outstanding physics professor. Her teaching style is engaging,
+                            and
+                            she
+                            makes complex physics concepts easy to understand. She is always available for questions and
+                            goes
+                            above and beyond to help her students succeed.
+                        </p>
+                    </div>
+                    <div class="review-footer">
+                        <label for="rating">Rating: 4.5</label>
+                        <button class="review-button">Want to leave a review?</button>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <div class="review-header">
+                        <img src="john.jpg" alt="Professor's Image" class="professor-image">
+                        <div class="professor-info">
+                            <p>Professor John Doe</p>
+                            <p>Course: Introduction to Programming Language Concepts</p>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p>
+                            Professor Doe makes programming an exciting subject to learn about, and he provides plenty
+                            of great oppurtunities for students
+                            develop their skills in the form of group-based coding assignments and fun weekly
+                            programming puzzles.
+                        </p>
+                    </div>
+                    <div class="review-footer">
+                        <label for="rating">Rating: 4.8</label>
+                        <button class="review-button">Want to leave a review?</button>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <img src="tushara.jpg" alt="Professor's Image" class="professor-image">
+                        <div class="professor-info">
+                            <p>Professor Tushara Sadasivuni </p>
+                            <p>Course: Software Engineering</p>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p>
+                            Professor Sadasivuni makes an otherwise dense and confusing topic, easy to follow with
+                            chapter slides and in-class activities
+                            that help further your understanding of the given topic (and she really likes our project
+                            and will give it a 100).
+                        </p>
+                    </div>
+                    <div class="review-footer">
+                        <label for="rating">Rating: 5.0</label>
+                        <button class="review-button">Want to leave a review?</button>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <img src="minz.jpg" alt="Professor's Image" class="professor-image">
+                        <div class="professor-info">
+                            <p>Professor Cristopher Minz</p>
+                            <p>Course: History of Motion Pictures</p>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p>
+                            Professor Minz gives his class an interesting subject and expands upon it by utilizing real
+                            world films to show the history and progression of filmmaking practices around the world.
+                        </p>
+                    </div>
+                    <div class="review-footer">
+                        <label for="rating">Rating: 4.3</label>
+                        <button class="review-button">Want to leave a review?</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Featured professors section -->
+        </div>
+
+        <div class="all-professors">
+            <h2 style="color: white;">All Reviews</h2>
+
+            <div class="search-bar-container">
+                <input type="text" id="search-bar" placeholder="Search reviews...">
+                <select id="filter-options">
+                    <option value="course">Filter by Course</option>
+                    <option value="professor">Filter by Professor</option>
+                    <!-- Add more filtering options as needed -->
+                </select>
+                <button id="search-button">Search</button>
+            </div>
+
+            <div class="all-container">
+                <div id="all-reviews-container">
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="prof.jpg" alt="Professor's Image" class="professor-image">
+                            <div class="professor-info">
+                                <p>Professor Jane Smith</p>
+                                <p>Course: Introduction to Physics</p>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>
+                                Professor Jane Smith is an outstanding physics professor. Her teaching style is
+                                engaging,
+                                and
+                                she
+                                makes complex physics concepts easy to understand. She is always available for questions
+                                and
+                                goes
+                                above and beyond to help her students succeed.
+                            </p>
+                        </div>
+                        <div class="review-footer">
+                            <label for="rating">Rating: 4.5</label>
+                            <button class="review-button">Want to leave a review?</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!-- Featured professors section -->
+        </div>
+
+
+
+
+        <div class="footer">
+            <!-- Footer content, links, and other information -->
+
+        </div>
+        <script src="dashboard.js"></script>
+        <script src="search.js"></script>
+
+</body>
+
+</html>

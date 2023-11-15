@@ -1,20 +1,405 @@
-body {
-    background-color: #333;
+/* Add this to your style.css or a new stylesheet */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
     color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+body {
+    background-color: #fff;
+    color: #000000;
     font-family: Arial, sans-serif;
     text-align: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* Center the dashboard vertically */
+    justify-content: flex-start;
+    /* Place the dashboard at the top */
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
-.container {
+.dashboard {
     background-color: #444;
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    /* Occupy the entire viewport width */
+    max-width: 100%;
+    /* Limit the maximum width of the dashboard */
+    text-align: left;
+    padding: 0px;
+    margin: 0 auto;
+    /* Center the dashboard horizontally */
 }
 
-/* Add more styling as needed */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('gsubanner_1.jpg');
+    /* Replace 'your-image.jpg' with the image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px;
+}
+
+.dashboard-header h1 {
+    color: #fff;
+    font-size: 24px;
+    /* Add any other styles you want for the title */
+}
+
+.dashboard-header button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dashboard-header button:hover {
+    background-color: #0056b3;
+}
+
+#user-status {
+    display: none;
+}
+
+/* Add this CSS to your stylesheet to style the dropdown */
+.user-options {
+    position: relative;
+    display: inline-block;
+}
+
+/* Add this CSS to your stylesheet */
+
+
+.show {
+    display: block;
+}
+
+/* Add styles for the "Create a Review" button */
+#create-review-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    /* Adjust the margin as needed */
+    cursor: pointer;
+}
+
+
+#create-review-button:hover {
+    background-color: #0056b3;
+}
+
+.create-review-section {
+    background: #333;
+    border: 1px solid #000;
+    /* Add any other styles you want for the create-review-section */
+    margin: 20px auto;
+    max-width: 95%;
+    padding: 20px;
+}
+
+#create-review-options {
+    display: none;
+}
+
+#create-review-options input[type="text"],
+#create-review-options textarea,
+#create-review-options input[type="number"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+#create-review-options input[type="number"] {
+    width: 100px;
+    /* Adjust the width to your preference */
+}
+
+/* Add this style to match the profile button style */
+#post-review-button {
+    background-color: #007BFF;
+    /* Green background color */
+    color: white;
+    /* White text color */
+    padding: 10px 20px;
+    /* Padding for better appearance */
+    border: none;
+    /* No border */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Cursor on hover */
+}
+
+#post-review-button:hover {
+    background-color: #0056b3;
+    /* Darker green color on hover */
+}
+
+
+
+
+.featured-professors {
+    background-color: #444;
+    /* Background color */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Box shadow for depth */
+    width: 100%;
+    /* Occupy the entire width */
+    max-width: 95%;
+    /* Limit the maximum width of the box */
+    text-align: left;
+    padding: 20px;
+    margin: 20px auto;
+
+    /* Center horizontally with spacing */
+}
+
+/* Additional styling for the content inside the featured professors box */
+.featured-professors h2 {
+    color: #fff;
+    font-size: 24px;
+    /* Add any other styles you want for the title */
+}
+
+.featured-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.all-professors {
+    color: black;
+    width: 100%;
+    /* Occupy the entire width */
+    max-width: 95%;
+    /* Limit the maximum width of the box */
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.all-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    /* Change position to relative */
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    /* Set the background color you prefer */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    /* Ensure the search bar appears above other content */
+    height: 700px;
+    /* Set the desired fixed height */
+    overflow-y: auto;
+    /* Add vertical scroll bar if content overflows */
+}
+
+
+
+
+
+
+/* Add initial styling for search bar container */
+.search-bar-container {
+    position: sticky;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #0070e7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: hidden;
+    width: 99%;
+}
+
+
+
+
+#user-options {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the center */
+}
+
+#profile-button,
+#logout-button {
+    margin-right: 10px;
+    /* Add some margin between the buttons */
+}
+
+
+/* Add more styles for the content inside the box as needed */
+.review {
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    width: 35%;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 25px;
+    overflow: hidden;
+    height: 300px;
+    /* Fixed height for each review box */
+    word-wrap: break-word;
+    /* Allow words to break and wrap to the next line */
+}
+
+.review p {
+    margin: 0;
+    /* Remove default margin for paragraphs */
+    overflow: hidden;
+    /* Hide overflow content for paragraphs */
+    text-overflow: ellipsis;
+    /* Display an ellipsis (...) to indicate text overflow */
+    white-space: normal;
+    /* Allow normal white space, enabling text wrapping */
+}
+
+
+
+/* Media query to adjust layout for smaller screens */
+@media (min-width: 1200px) {
+    .review {
+        width: 20%;
+        /* Scale down to 3 reviews per line on smaller screens */
+    }
+}
+
+
+.review-header {
+    display: flex;
+    font-size: 18px;
+}
+
+.professor-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* Add a blue border around the image */
+    border: 3px solid #007BFF;
+    /* You can adjust the width and color as needed */
+}
+
+
+.professor-info {
+    flex: 1;
+    height: 80px;
+
+}
+
+h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.review-body {
+    margin-top: 10px;
+}
+
+.review-footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.review-footer label {
+    margin-right: 20px;
+    /* Add margin to the right of the label */
+}
+
+.review-button {
+    background-color: #007BFF;
+    /* Background color */
+    color: black;
+    /* Text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+
+    cursor: pointer;
+}
+
+.review-button:hover {
+    background-color: #0056b3;
+    /* Change color on hover */
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('gsu.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 6px;
+    z-index: 2;
+    height: 100px;
+    width: 100%;
+    /* Adjust the height as needed */
+}
