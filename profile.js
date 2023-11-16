@@ -19,14 +19,12 @@ async function fetchUserProfile() {
     try {
         const response = await fetch('http://localhost:5000/api/getUserProfile', {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-            }
+            // Do not include the Authorization header
         });
-
 
         if (response.ok) {
             const data = await response.json();
+            console.log('User profile data:', data);  // Log the data
             updateProfileUI(data);
         } else {
             console.error('Failed to fetch user profile:', response.status);

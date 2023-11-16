@@ -39,6 +39,10 @@ function handleLogout() {
 
 // Add event listener for "Post Your Review" button
 document.getElementById("post-review-button").addEventListener("click", handlePostReviewButtonClick);
+document.getElementById("login-button").style.display = "block";
+document.getElementById("professor-login-button").style.display = "block";
+
+// Event listener for both buttons
 
 
 async function fetchReviews() {
@@ -128,6 +132,7 @@ async function updateUI() {
     const logoutButton = document.getElementById("logout-button");
     const userStatus = document.getElementById("user-status");
     const loginButton = document.getElementById("login-button");
+    const loginProfessor = document.getElementById("professor-login-button");
 
     // Check if the authentication token is null
     const authToken = localStorage.getItem('authToken');
@@ -136,6 +141,7 @@ async function updateUI() {
     // Show/hide elements based on login status and token value
     userStatus.style.display = isLoggedIn && !isTokenNull ? 'block' : 'none';
     loginButton.style.display = isTokenNull ? 'block' : 'none';
+    loginProfessor.style.display = isTokenNull ? 'block' : 'none';
     createReviewButton.style.display = isLoggedIn ? 'block' : 'none';
     profileButton.style.display = isLoggedIn ? 'block' : 'none';
     logoutButton.style.display = isLoggedIn ? 'block' : 'none';
@@ -153,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI();
     document.getElementById("post-review-button").addEventListener("click", handlePostReviewButtonClick);
     const loginButton = document.getElementById("login-button");
+    const loginProfessor = document.getElementById("professor-login-button");
     const logoutButton = document.getElementById("logout-button");
     const createReviewButton = document.getElementById("create-review-button");
     const profileButton = document.getElementById("profile-button");
@@ -185,6 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     postReviewButton.addEventListener("click", handlePostReviewButtonClick);
     loginButton.addEventListener("click", () => {
+        // Redirect to the login page (firstiteration.html)
+        window.location.href = "firstiteration.html";
+
+    });
+    loginProfessor.addEventListener("click", () => {
         // Redirect to the login page (firstiteration.html)
         window.location.href = "firstiteration.html";
 
