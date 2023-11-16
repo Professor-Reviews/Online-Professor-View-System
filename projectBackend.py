@@ -28,15 +28,6 @@ db_config = {
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
-
-
-from flask import request
-
-
-
-
-from flask import request
-
 # ...
 @app.route('/homepage')
 def homepage():
