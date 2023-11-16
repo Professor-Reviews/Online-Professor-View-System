@@ -138,6 +138,31 @@ def search_reviews():
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
+    # data = request.json  # Assuming the data is sent as JSON in the request body
+
+    # studentEmail = data.get('studentEmail')
+    # password = data.get('password')
+
+    # try:
+    #     connection = get_db_connection()
+    #     cursor = connection.cursor(dictionary=True)
+
+    #     cursor.execute("SELECT studentEmail, password FROM Student WHERE studentEmail = %s AND Password = %s", (studentEmail, password))
+    #     student = cursor.fetchone()
+
+    #     if student:
+    #         return jsonify({'authenticated': True}), 200
+    #     else:
+    #         return jsonify({'authenticated': False}), 401
+
+    # except mysql.connector.Error as err:
+    #     return jsonify({'error': f'Database error: {err}'}), 500
+
+    # finally:
+    #     if 'cursor' in locals() and cursor is not None:
+    #         cursor.close()
+    #     if 'connection' in locals() and connection.is_connected():
+    #         connection.close()
     data = request.json  # Assuming the data is sent as JSON in the request body
 
     studentEmail = data.get('studentEmail')
@@ -147,22 +172,28 @@ def authenticate():
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
 
-        cursor.execute("SELECT studentEmail, password FROM Student WHERE studentEmail = %s AND Password = %s", (studentEmail, password))
+        cursor.execute("SELECT studentEmail, password, fName FROM Student WHERE studentEmail = %s AND Password = %s", (studentEmail, password))
         student = cursor.fetchone()
 
         if student:
-            return jsonify({'authenticated': True}), 200
+            return jsonify({'authenticated': True, 'user': student}), 200
         else:
+            cursor.execute("SELECT profEmail, password, fName FROM professor WHERE profEmail = %s AND Password = %s", (studentEmail, password))
+            professor = cursor.fetchone()
+            if professor:
+                return jsonify({'authenticated': True, 'user': professor}), 200
             return jsonify({'authenticated': False}), 401
 
-    except mysql.connector.Error as err:
-        return jsonify({'error': f'Database error: {err}'}), 500
-
-    finally:
-        if 'cursor' in locals() and cursor is not None:
-            cursor.close()
-        if 'connection' in locals() and connection.is_connected():
-            connection.close()
+      except mysql.connector.Error as err:
+          return jsonify({'error': f'Database error: {err}'}), 500
+  
+      finally:
+          if 'cursor' in locals() and cursor is not None:
+              cursor.close()
+          if 'connection' in locals() and connection.is_connected():
+              connection.close()
+# check if this works and you are able to get the user data (the first name for now) from this version of authenticate
+# It can also check if the user is a professor or a student
 
 @app.route('/api/check-login-status', methods=['GET', 'OPTIONS'])
 def check_login_status():
